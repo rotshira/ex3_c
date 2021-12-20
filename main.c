@@ -29,10 +29,9 @@ for(int i=0;i<len;i++){
 return count;}
 ////////////////////////////////
 void atbashReverse(char *word ,int len , char *temp2){
-
 int j=len-1;
-char a;
-for(int i=0;i<len;i++){
+for(int i=0;i<len;i++)
+{
     temp2[j]=word[i];
     j--;
 }

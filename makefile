@@ -8,4 +8,4 @@ all: stringProg
 stringProg: main.o
 	gcc $(CFLAGS) -o stringProg main.o
 main.o: main.c
-	gcc $(CFLAGS) -c main.c
+	gcc $(CFLAGS) -c main.cmake

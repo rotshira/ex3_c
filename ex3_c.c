@@ -4,14 +4,14 @@
 #define TXT 1024
 #define WORD 30
 ////////////////////////////////
-int gimtria_c(char word ){
+int gimtria_c(char w ){
 int count =0;
 
-    if(word>=65 && word<=90){
-        count+= word-64;
+    if(w>=65 && w<=90){
+        count+= w-64;
     }
-    if(word>=97 && word<=122){
-        count+= word-96;
+    if(w>=97 && w<=122){
+        count+= w-96;
 }
 
 return count;}
@@ -43,12 +43,12 @@ int j=0;
 char a;
 int i;
 for(i=0;i<len;i++){
-    //if this is capital leter 
+    
     if(word[i]>=65 && word[i]<=90){
         
         a=90-(word[i] -65);
     }
-    //if this is small leter 
+    
     if(word[i]>=97 && word[i]<=122){
         a=122-(word[i] -97);
     }
@@ -60,14 +60,15 @@ for(i=0;i<len;i++){
 
 }
 /////////////////////////////////
-int main (){
+int main ()
+{
 
 char word [WORD];
 char txt [TXT+1];
 
 char ch;
 int i ;
-//get the word
+
 for (i=0; i<WORD; i++){
 	scanf("%c" , &ch);
 	if(ch == ' ' || ch == '\t' || ch == '\n') break;
@@ -75,7 +76,7 @@ for (i=0; i<WORD; i++){
 	}
     word[i]='\0';
 
-//get the text
+
 for (i=0; i<TXT; i++){
 	scanf("%c" , &ch);
 	if(ch == '~') break;
@@ -129,15 +130,12 @@ atbash(word, strlen(word),atb);
 atbashReverse(atb, strlen(word) ,rev);
 
  for(int i=0; i<strlen(txt); i++) {
-    
     int br=0;
     int bf=0;
     int r=0;
     int a=0;
-
     int rw=0;
     int aw=0;
-
     char wordPrintR [strlen(txt)+1];
     char wordPrintA [strlen(txt)+1];
     memset(wordPrintR, '0', strlen(txt));
@@ -193,10 +191,10 @@ atbashReverse(atb, strlen(word) ,rev);
         }
     }
 }
-printf("\n");
+
 //////////////////////////////////////////
 first=0;
-printf("Anagram Sequences: ");
+printf("\nAnagram Sequences: ");
 char printWord [strlen(word)+1];
 printWord[strlen(word)+1]='\0';
 int p=0;
@@ -205,7 +203,7 @@ int numOfDig=strlen(word);
 strcpy(temp,word);
 int find=0;
 int out =0;
-// int path=0;
+
 for(int i=0; i<strlen(txt); i++) {
     if(txt[i]==32){
         continue;

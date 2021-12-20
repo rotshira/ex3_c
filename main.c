@@ -28,97 +28,91 @@ for(int i=0;i<len;i++){
 }}
 return count;}
 ////////////////////////////////
-void atbashReverse(char *word ,int len , char *temp2){
+void atbashReverse(char *word ,int len , char *t1){
 int j=len-1;
 for(int i=0;i<len;i++)
 {
-    temp2[j]=word[i];
+    t1[j]=word[i];
     j--;
 }
 }
 /////////////////////////////////////
-void atbash(char *word ,int len , char *tempF){
+void atbash(char *word ,int len , char *t2){
 int j=0;
-char a;
+char c;
 int i;
 for(i=0;i<len;i++){
     
     if(word[i]>=65 && word[i]<=90){
         
-        a=90-(word[i] -65);
+        c=90-(word[i] -65);
     }
     
     if(word[i]>=97 && word[i]<=122){
-        a=122-(word[i] -97);
+        c=122-(word[i] -97);
     }
-   
-    tempF[j]=a;
+    t2[j]=c;
     j++;
     
 }
-
 }
 /////////////////////////////////
 int main ()
 {
 
 char word [WORD];
-char txt [TXT+1];
-
-char ch;
+char text [TXT+1];
+char c;
 int i ;
 
 for (i=0; i<WORD; i++){
-	scanf("%c" , &ch);
-	if(ch == ' ' || ch == '\t' || ch == '\n') break;
-	word[i] = ch;
+	scanf("%c" , &c);
+	if(c == ' ' || c == '\t' || c == '\n') 
+    break;
+	word[i] = c;
 	}
     word[i]='\0';
-
-
 for (i=0; i<TXT; i++){
-	scanf("%c" , &ch);
-	if(ch == '~') break;
-	txt[i] = ch;	
+	scanf("%c" , &c);
+	if(c == '~') break;
+	text[i] = c;	
 	}
-  txt[i]='\0';
-  scanf("%c" , &ch);
- 
+  text[i]='\0';
+  scanf("%c" , &c);
 ///////////////////////////
 printf("Gematria Sequences: ");
-char wordPrint [strlen(txt)];
+char wordPrint [strlen(text)];
 int geo = gimtria(word,strlen(word));
-int first=0;
-  for(int i=0; i<strlen(txt); i++) {
+int f=0;
+  for(int i=0; i<strlen(text); i++) {
     int count = 0;
     int k=0;
     int len=strlen(word);
-     memset(wordPrint, 0,strlen(txt) );
-     
-     for(int j=i; count < geo  &&j<j+len &&j<strlen(txt);j++) {
+     memset(wordPrint, 0,strlen(text) );
+     for(int j=i; count < geo  &&j<j+len &&j<strlen(text);j++) {
         
-            if(gimtria_c(txt[j])==0){
+            if(gimtria_c(text[j])==0){
                 len++;
             }    
-            count += gimtria_c(txt[j]);
+            count += gimtria_c(text[j]);
             if(count==0){
                 break;
             }
-            wordPrint[k]=txt[j];
+            wordPrint[k]=text[j];
             k++;
             
             if(count == geo){
-                if(first==1){
+                if(f==1){
                     printf("~");
                 }
                 printf("%s",wordPrint);
-                first=1;
+                f=1;
                 break;
             } 
             }
             }
 /////////////////////////////////
-first=0;
+f=0;
 printf("\nAtbash Sequences: ");
 char atb [strlen(word)+1];
 atb[strlen(word)+1]='\0';
@@ -128,63 +122,63 @@ rev[strlen(word)+1]='\0';
 atbash(word, strlen(word),atb);
 atbashReverse(atb, strlen(word) ,rev);
 
- for(int i=0; i<strlen(txt); i++) {
-    int br=0;
-    int bf=0;
+ for(int i=0; i<strlen(text); i++) {
+    int b1=0;
+    int b2=0;
     int r=0;
     int a=0;
     int rw=0;
     int aw=0;
-    char wordPrintR [strlen(txt)+1];
-    char wordPrintA [strlen(txt)+1];
-    memset(wordPrintR, '0', strlen(txt));
-    memset(wordPrintA, '0', strlen(txt));
+    char w1 [strlen(text)+1];
+    char w2 [strlen(text)+1];
+    memset(w1, '0', strlen(text));
+    memset(w2, '0', strlen(text));
         
-    for(int j=i; j<strlen(txt)  &&  (br==0||bf==0); j++) {
-        if(txt[j]==32){
-            if(br==0){
+    for(int j=i; j<strlen(text)  &&  (b1==0||b2==0); j++) {
+        if(text[j]==32){
+            if(b1==0){
               
-                wordPrintR[rw]=txt[j]; 
+               w1[rw]=text[j]; 
                 rw++;
                 continue;}
-            if(bf==0)  {
-                wordPrintA[aw]=atb[a];
+            if(b2==0)  {
+                w2[aw]=atb[a];
                 aw++; 
                 continue;}
               }
-        if(txt[j]== rev[r] && br==0 ){   
-            wordPrintR[rw]=rev[r];
+        if(text[j]== rev[r] && b1==0 ){   
+            w1[rw]=rev[r];
             rw++;
             r++;
         }
         else{
-            br=1;
+            b1=1;
         }
-        if(txt[j]== atb[a] && bf==0 ){
-            wordPrintA[aw]=atb[a];
+        if(text[j]== atb[a] && b2==0 ){
+            w2[aw]=atb[a];
             aw++;
              a++;     
         }
         else{
-            bf=1;
+            b2=1;
         }
         if(r==strlen(word)){
-            wordPrintR[rw]='\0';
-            if(first==1){
+            w1[rw]='\0';
+            if(f==1){
                     printf("~");}
-                first=1;
-            printf("%s" , wordPrintR);
+                f=1;
+            printf("%s" , w1);
            r=0;
          
         }
         
         if(a==strlen(word)){
-            wordPrintA[aw]='\0';
-            if(first==1){
+            w2[aw]='\0';
+            if(f==1){
                     printf("~");
                 }
-                first=1;
-            printf("%s" ,wordPrintA);
+                f=1;
+            printf("%s" ,w2);
             a=0;
          
         }
@@ -192,62 +186,62 @@ atbashReverse(atb, strlen(word) ,rev);
 }
 
 //////////////////////////////////////////
-first=0;
+f=0;
 printf("\nAnagram Sequences: ");
-char printWord [strlen(word)+1];
-printWord[strlen(word)+1]='\0';
+char ans [strlen(word)+1];
+ans[strlen(word)+1]='\0';
 int p=0;
 char temp[strlen(word)];
-int numOfDig=strlen(word);
+int numOfDigit=strlen(word);
 strcpy(temp,word);
-int find=0;
-int out =0;
+int x=0;
+int y =0;
 
-for(int i=0; i<strlen(txt); i++) {
-    if(txt[i]==32){
+for(int i=0; i<strlen(text); i++) {
+    if(text[i]==32){
         continue;
     }
-    out=0;
+     y=0;
     strcpy(temp,word);
-    numOfDig=strlen(word);
+    numOfDigit=strlen(word);
     p=0;
-      for(int j=i; j<strlen(txt)&& out==0 ; j++) {
-         if(txt[j]==32){
-                 printWord[p]=txt[j]; 
+      for(int j=i; j<strlen(text)&&  y==0 ; j++) {
+         if(text[j]==32){
+                 ans[p]=text[j]; 
                  p++;
                   continue;
               }
           for (int k = 0; k < strlen(word) ; k++){
             
-                if(txt[j]==temp[k]){
-                    find=1;
-                    printWord[p]=txt[j];
+                if(text[j]==temp[k]){
+                    x=1;
+                   ans[p]=text[j];
                     temp[k]= '~';
                     break;}
       }
    
-      if(find==1){
+      if(x==1){
 
-            numOfDig=numOfDig-1;
+            numOfDigit=numOfDigit-1;
             p++;
-            find=0;
+           x=0;
       }
       else{
-            out=1;
+             y=1;
             strcpy(temp,word);
-            numOfDig=strlen(word);
+            numOfDigit=strlen(word);
             p=0;
 
       }
       
-      if(numOfDig==0){
-           printWord[strlen(word)]='\0';
-          if(first==1){
+      if(numOfDigit==0){
+           ans[strlen(word)]='\0';
+          if(f==1){
                     printf("~");
                 }
-                first=1;
-        printf("%s",printWord);
-        numOfDig=strlen(word);
+                f=1;
+        printf("%s",ans);
+        numOfDigit=strlen(word);
       }
         
 }
